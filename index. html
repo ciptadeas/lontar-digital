@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lontar Digital Darsana - Personal & Certified MPI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #120905;
+            background-image: 
+                radial-gradient(circle at 50% 0%, #2c160b 0%, transparent 75%),
+                radial-gradient(#321a0d 1.5px, transparent 1.5px);
+            background-size: 100% 100%, 32px 32px;
+            color: #fcefdc;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .font-cinzel { font-family: 'Cinzel', serif; }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #ffe599 0%, #d4af37 45%, #aa7c11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+        }
+
+        #glitter-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .gembul-card {
+            background: linear-gradient(160deg, rgba(38,21,13,0.95) 0%, rgba(22,12,7,0.98) 100%);
+            border: 3px solid #8c5a2b;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.85), inset 0 0 30px rgba(212, 175, 55, 0.15);
+            border-radius: 40px;
+            backdrop-filter: blur(12px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .gold-pill-btn {
+            background: linear-gradient(135deg, #edd27b 0%, #c89623 50%, #8c6008 100%);
+            color: #1a0a03;
+            font-weight: 900;
+            border-radius: 9999px;
+            border: 2px solid #fff2a8;
+            box-shadow: 0 8px 25px rgba(200, 150, 35, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .gold-pill-btn:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 14px 35px rgba(237, 210, 123, 0.6);
+            background: linear-gradient(135deg, #fff0aa 0%, #dca32a 50%, #9e6d0c 100%);
+        }
+
+        .gold-capsule-outline {
+            background: rgba(30, 15, 8, 0.85);
+            border: 2px solid #b8860b;
+            border-radius: 9999px;
+            color: #f7e3af;
+            transition: all 0.25s ease;
+        }
+        .gold-capsule-outline:hover {
+            border-color: #ffd700;
+            background: rgba(55, 28, 12, 0.9);
+            color: #fff;
+        }
+
+        .float-alive { animation: floatSmooth 4.5s infinite ease-in-out; }
+        @keyframes floatSmooth {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        @keyframes balloonFall {
+            0% { transform: translateY(-10px); opacity: 1; }
+            100% { transform: translateY(220px); opacity: 1; }
+        }
+        .falling-balloon {
+            animation: balloonFall 6.5s linear forwards;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+        }
+
+        .frog-anim { transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+        @keyframes fishSwim {
+            0% { transform: translateX(-20px) scaleX(1); }
+            50% { transform: translateX(250px) scaleX(1); }
+            51% { transform: translateX(250px) scaleX(-1); }
+            100% { transform: translateX(-20px) scaleX(-1); }
+        }
+        .swimming-fish { animation: fishSwim 7s infinite ease-in-out; }
+    </style>
+</head>
+<body class="flex flex-col justify-between min-h-screen p-3 md:p-6">
+
+    <canvas id="glitter-canvas"></canvas>
+
+    <header class="gembul-card px-5 py-3 mb-6 flex justify-between items-center gap-4">
+        <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-amber-600 to-amber-950 border-2 border-amber-400 text-amber-200 flex items-center justify-center text-2xl shadow-lg float-alive">
+                🛕
+            </div>
+            <div>
+                <h1 class="font-cinzel text-lg md:text-2xl font-black gold-gradient-text">LONTAR DARSANA</h1>
+                <p class="text-[11px] md:text-xs font-black text-amber-300/80">Kelas XI B1 • SMA Negeri 1 Gianyar</p>
+            </div>
+        </div>
+
+        <div class="px-5 py-2 gold-capsule-outline font-black text-xs md:text-sm">
+            Slide <span id="slide-num" class="text-amber-400 text-base">1</span> / 15
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto w-full flex-grow relative z-10 flex items-center justify-center">
+
+        <!-- SLIDE 1: IDENTITAS PEMBUAT / DEVELOPER UTAMA (FEBRI) -->
+        <section id="slide-1" class="slide-step w-full">
+            <div class="gembul-card p-6 md:p-10 space-y-6 text-center">
+                <div class="text-6xl float-alive">👑✨</div>
+                <div>
+                    <h3 class="font-cinzel text-xs font-black tracking-widest text-amber-400 uppercase">Pencetus & Lead Developer</h3>
+                    <h2 class="font-cinzel text-2xl md:text-4xl font-black gold-gradient-text mt-1">LONTAR DIGITAL DARSANA</h2>
+                </div>
+
+                <div class="bg-gradient-to-r from-amber-950/90 to-amber-900/90 p-6 rounded-3xl border-2 border-amber-500/80 shadow-xl space-y-3 text-left">
+                    <div class="flex justify-between items-center border-b border-amber-700/80 pb-2">
+                        <span class="text-amber-300 font-black text-sm">PENGEMBANG UTAMA APLIKASI</span>
+                        <span class="px-3 py-1 bg-amber-400 text-amber-950 font-black rounded-full text-[10px]">XI B1 • ABSEN 41</span>
+                    </div>
+                    <p class="text-amber-100 font-black text-2xl">Putu Febri Suriantari</p>
+                    <p class="text-xs md:text-sm font-bold text-amber-200/90 leading-relaxed">
+                        • Merupakan pencetus gagasan tunggal, perancang tata letak antarmuka UI/UX, dan pemrogram utama di balik seluruh sistem logika web serta 3 Mini Game Interaktif (Balon, Kodok, & Mancing Ikan).
+                    </p>
+                </div>
+
+                <div class="space-y-2 text-left">
+                    <p class="text-amber-300 font-black text-xs border-b border-amber-800 pb-1">👥 Anggota Pendukung Kelompok:</p>
+                    <div class="grid md:grid-cols-2 gap-2 text-xs font-bold text-amber-100/80">
+                        <div class="p-2.5 bg-amber-950/50 border border-amber-800 rounded-xl">1. Anak Agung Mirah Octaviani (01)</div>
+                        <div class="p-2.5 bg-amber-950/50 border border-amber-800 rounded-xl">2. Dewa Ayu CiptaDeas Casmiari (04)</div>
+                        <div class="p-2.5 bg-amber-950/50 border border-amber-800 rounded-xl">3. I Gusti Ayu Mariska Juniantari (09)</div>
+                        <div class="p-2.5 bg-amber-950/50 border border-amber-800 rounded-xl">4. Ni Luh Cipta Astika (27)</div>
+                        <div class="p-2.5 bg-amber-950/50 border border-amber-800 rounded-xl">5. Ni Putu Dian Sukma Aryani (33)</div>
+                        <div class="p-2.5 bg-amber-950/50 border border-amber-800 rounded-xl">6. Ni Wayan Devita Antari (36)</div>
+                        <div class="p-2.5 bg-amber-950/50 border border-amber-800 rounded-xl md:col-span-2">7. Putu Adinda Chelsea Astika (40)</div>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button onclick="nextSlide()" class="gold-pill-btn py-4 px-10 text-base">Lanjut ke Identitas Pengguna ➔</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: INPUT IDENTITAS PENGGUNA / PEMIRSA -->
+        <section id="slide-2" class="slide-step hidden w-full">
+            <div class="gembul-card p-8 md:p-10 space-y-6 text-center">
+                <div class="text-5xl float-alive">🪶</div>
+                <h2 class="font-cinzel text-2xl md:text-3xl font-black gold-gradient-text">Identitas Pengguna MPI</h2>
+                <p class="text-xs md:text-sm font-bold text-amber-200/90">
+                    Masukkan nama dan kelas kamu sebelum memulai penjelajahan Lontar Darsana:
+                </p>
+
+                <div class="bg-amber-950/80 p-6 rounded-3xl border-2 border-amber-700/80 space-y-4 text-left">
+                    <div>
+                        <label class="block text-xs font-black text-amber-300 mb-1">NAMA LENGKAP:</label>
+                        <input type="text" id="user-name" placeholder="Contoh: Ketut Budi" class="w-full px-4 py-3 rounded-2xl bg-amber-900/40 border border-amber-600 text-amber-100 font-bold text-sm focus:outline-none focus:border-amber-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-black text-amber-300 mb-1">KELAS / ABSEN:</label>
+                        <input type="text" id="user-class" placeholder="Contoh: XI B1 / 15" class="w-full px-4 py-3 rounded-2xl bg-amber-900/40 border border-amber-600 text-amber-100 font-bold text-sm focus:outline-none focus:border-amber-400">
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center pt-2">
+                    <button onclick="prevSlide()" class="gold-capsule-outline px-6 py-3 text-xs font-black">← Kembali</button>
+                    <button onclick="saveUserAndNext()" class="gold-pill-btn py-3.5 px-9 text-sm">Mulai Belajar 🚀</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: PETUNJUK -->
+        <section id="slide-3" class="slide-step hidden w-full">
+            <div class="gembul-card p-8 space-y-6 text-center">
+                <div class="text-5xl float-alive">💡</div>
+                <h2 class="font-cinzel text-3xl font-black gold-gradient-text">Petunjuk Penggunaan MPI</h2>
+                <div class="bg-amber-950/60 p-6 rounded-3xl border border-amber-800 text-left text-sm font-bold text-amber-100 space-y-3">
+                    <p>1. Halo <span id="display-user-name" class="text-amber-400 font-black">Sobat</span>! Baca materi Sad Darsana secara runtut.</p>
+                    <p>2. Selesaikan 3 Arena Game Kuis (Balon, Kodok, dan Mancing Ikan).</p>
+                    <p>3. Dapatkan Sertifikat Kelulusan Resmi atas nama kamu di akhir slide!</p>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="gold-capsule-outline px-6 py-3 text-xs font-black">← Kembali</button>
+                    <button onclick="nextSlide()" class="gold-pill-btn py-3 px-8 text-sm">Lanjut ➔</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: TP -->
+        <section id="slide-4" class="slide-step hidden w-full">
+            <div class="gembul-card p-8 space-y-6 text-center">
+                <div class="text-5xl float-alive">🎯</div>
+                <h2 class="font-cinzel text-3xl font-black gold-gradient-text">Tujuan Pembelajaran (TP)</h2>
+                <div class="bg-amber-950/60 p-6 rounded-3xl border border-amber-800 text-left text-sm font-bold text-amber-100 space-y-3">
+                    <p>• Memahami pengertian Darsana dan Sad Darsana secara mendalam.</p>
+                    <p>• Mengidentifikasi Rsi penyusun dan pokok pemikiran 6 aliran filsafat Hindu.</p>
+                    <p>• Menghubungkan pemikiran Sad Darsana dengan logika kehidupan modern.</p>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="gold-capsule-outline px-6 py-3 text-xs font-black">← Kembali</button>
+                    <button onclick="nextSlide()" class="gold-pill-btn py-3 px-8 text-sm">Lihat Peta ➔</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: PETA -->
+        <section id="slide-5" class="slide-step hidden w-full">
+            <div class="gembul-card p-8 space-y-6 text-center">
+                <h2 class="font-cinzel text-3xl font-black gold-gradient-text">🗺️ Peta Konsep Sad Darsana</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm font-black text-amber-100">
+                    <div class="p-3.5 bg-amber-950/60 border border-amber-700 rounded-2xl">1. Nyaya</div>
+                    <div class="p-3.5 bg-amber-950/60 border border-amber-700 rounded-2xl">2. Vaiseshika</div>
+                    <div class="p-3.5 bg-amber-950/60 border border-amber-700 rounded-2xl">3. Samkhya</div>
+                    <div class="p-3.5 bg-amber-950/60 border border-amber-700 rounded-2xl">4. Yoga</div>
+                    <div class="p-3.5 bg-amber-950/60 border border-amber-700 rounded-2xl">5. Mimamsa</div>
+                    <div class="p-3.5 bg-amber-950/60 border border-amber-700 rounded-2xl">6. Vedanta</div>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="gold-capsule-outline px-6 py-3 text-xs font-black">← Kembali</button>
+                    <button onclick="nextSlide()" class="gold-pill-btn py-3 px-8 text-sm">Mulai Materi ➔</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6-12: MATERI -->
+        <section id="slide-6" class="slide-step hidden w-full"><div class="gembul-card p-8 space-y-5"><span class="text-xs font-black text-amber-400">Materi 1 / 7</span><h3 class="font-cinzel text-2xl font-black gold-gradient-text">Pengertian Darsana</h3><p class="text-base md:text-lg font-bold text-amber-100/90 leading-relaxed bg-amber-950/60 p-6 rounded-3xl border border-amber-800">Darsana merupakan istilah untuk menyebut sistem pemikiran atau filsafat yang berusaha memahami hakikat kehidupan, pengetahuan, kebenaran, dan tujuan manusia.</p><div class="flex justify-between"><button onclick="prevSlide()" class="gold-capsule-outline px-6 py-3 text-xs font-black">← Kembali</button><button onclick="nextSlide()" class="gold-pill-btn py-3 px-7 text-sm">Lanjut ➔</button></div></div></section>
+        
+        <section id="slide-7" class="slide-step hidden w-full"><div class="gembul-card p-8 space-y-5"><span class="text-xs font-black text-amber-400">Materi 2 / 7</span><h3 class="font-cinzel text-2xl font-black gold-gradient-text">1. Nyaya Darsana (Rsi Gautama)</h3><p class="text-base md:text-lg font-bold text-amber-100/90 leading-relaxed bg-amber-950/60 p-6 rounded-3xl border border-amber-800">Menitikberatkan pada logika, penalaran, dan pengetahuan benar. Penerapan: Menyaring informasi hoaks di media sosial.</p><div class="flex justify-between"><button onclick="prevSlide()" class="gold-capsule-outline px-6 py-3 text-xs font-black">← Kembali</button><button onclick="nextSlide()" class="gold-pill-btn py-3 px-7 text-sm">Lanjut ➔</button></div></div></section>
+
+        <section id="slide-8" class="slide-step hidden w-full"><div class="gembul-card p-8 space-y-5"><span class="text-xs font-black text-amber-400">Materi 3 / 7</span><h3 class="font-cinzel text-2xl font-black gold-gradient-text">2. Vaiseshika Darsana (Rsi Kanada)</h3><p class="text-base md:text-lg font-bold text-amber-100/90 leading-relaxed bg-amber-950/60 p-6 rounded-3xl border border-amber-800">Mengkaji kategori realitas fisik dan merumuskan konsep atom (Paramanu) penyusun alam semesta.</p><div class="flex justify-between"><button onclick="prevSlide()" class="gold-capsule-outline px-6 py-3 text-xs font-black">← Kembali</button><button onclick="nextSlide()" class="gold-pill-btn py-3 px-7 text-sm">Lanjut ➔</button></div></div></section>
+
+        <section id="slide-9" class="slide-step hidden w-full"><div class="gembul-card p-8 space-y-5"><span class="text-xs font-black text-amber-400">Materi 4 / 7</span><h3 class="font-cinzel text-2xl font-black gold-gradient-text">3. Samkhya Darsana (Rsi Kapila)</h3><p class="text-base md:text-lg font-bold text-amber-100/90 leading-relaxed bg-amber-950/60 p-6 rounded-3xl border border-amber-800">Menjelaskan realitas melalui dualisme Purusa (kesadaran jiwa) dan Prakrti (materi/alam).</p><div class="flex justify-between"><button onclick="prevSlide()" class="gold-capsule-outline px-6 py-3 text-xs font-black">← Kembali</button><button onclick="nextSlide()" class="gold-pill-btn py-3 px-7 text-sm">Lanjut ➔</button></div></div></section>
+
+        <section id="slide-10" class="slide-step hidden w-full"><div class="gembul-card p-8 space-y-5"><span class="text-xs font-black text-amber-400">Materi 5 / 7</span><h3 class="font-cinzel text-2xl font-black gold-gradient-text">4. Yoga Darsana (Rsi Patanjali)</h3><p class="text-base md:text-lg font-bold text-amber-100/90 leading-relaxed bg-amber-950/60 p-6 rounded-3xl border border-amber-800">Menekankan disiplin diri, pengendalian pikiran, meditasi, dan konsentrasi rohani.</p><div class="flex justify-between"><button onclick="prevSlide()" class="gold-capsule-outline px-6 py-3 text-xs font-black">← Kembali</button><button onclick="nextSlide()" class="gold-pill-btn py-3 px-7 text-sm">Lanjut ➔</button></div></div></section>
+
+        <section id="slide-11" class="slide-step hidden w-full"><div class="gembul-card p-8 space-y-5"><span class="text-xs font-black text-amber-400">Materi 6 / 7</span><h3 class="font-cinzel text-2xl font-black gold-gradient-text">5. Mimamsa Darsana (Rsi Jaimini)</h3><p class="text-base md:text-lg font-bold text-amber-100/90 leading-relaxed bg-amber-950/60 p-6 rounded-3xl border border-amber-800">Berfokus pada sucinya Weda, kewajiban (Dharma), dan pelaksanaan ritual keagamaan secara tepat.</p><div class="flex justify-between"><button onclick="prevSlide()" class="gold-capsule-outline px-6 py-3 text-xs font-black">← Kembali</button><button onclick="nextSlide()" class="gold-pill-btn py-3 px-7 text-sm">Lanjut ➔</button></div></div></section>
+
+        <section id="slide-12" class="slide-step hidden w-full"><div class="gembul-card p-8 space-y-5"><span class="text-xs font-black text-amber-400">Materi 7 / 7</span><h3 class="font-cinzel text-2xl font-black gold-gradient-text">6. Vedanta Darsana (Badarayana)</h3><p class="text-base md:text-lg font-bold text-amber-100/90 leading-relaxed bg-amber-950/60 p-6 rounded-3xl border border-amber-800">Membahas puncak ajaran Upanisad mengenai persatuan Atman dan Brahman sebagai Realitas Tertinggi.</p><div class="flex justify-between"><button onclick="prevSlide()" class="gold-capsule-outline px-6 py-3 text-xs font-black">← Kembali</button><button onclick="nextSlide(); startGame1();" class="gold-pill-btn py-3 px-7 text-sm bg-emerald-600">Masuk Game 1 🎮</button></div></div></section>
+
+        <!-- SLIDE 13: GAME 1 -->
+        <section id="slide-13" class="slide-step hidden w-full"><div class="gembul-card p-6 md:p-8 space-y-5"><div class="flex justify-between items-center border-b border-amber-800 pb-3"><h3 class="font-cinzel text-xl font-black gold-gradient-text">🎈 Game 1: Balon Darsana</h3><span id="g1-score" class="font-black text-amber-300 text-xs bg-amber-950 px-3 py-1 rounded-full">Skor: 0</span></div><div id="g1-soal" class="text-sm font-black text-amber-100 text-center"></div><div id="g1-canvas" class="relative h-[210px] bg-amber-950/50 rounded-3xl border border-amber-800 overflow-hidden flex justify-center items-center"></div><div id="g1-status" class="text-center font-black text-xs min-h-[20px]"></div></div></section>
+
+        <!-- SLIDE 14: GAME 2 & 3 -->
+        <section id="slide-14" class="slide-step hidden w-full"><div class="gembul-card p-6 md:p-8 space-y-5"><div class="flex justify-between items-center border-b border-amber-800 pb-3"><h3 class="font-cinzel text-xl font-black gold-gradient-text">🐸 Game 2: Lompatan Kodok</h3><span id="g2-score" class="font-black text-amber-300 text-xs bg-amber-950 px-3 py-1 rounded-full">Skor: 0</span></div><div class="relative h-[120px] bg-emerald-950/40 rounded-3xl border border-emerald-800 flex items-center justify-around px-4 overflow-hidden"><div id="frog" class="absolute left-[10%] text-4xl frog-anim">🐸</div><div class="text-3xl float-alive">🪷</div><div class="text-3xl float-alive" style="animation-delay: 1s">🪷</div><div class="text-3xl float-alive" style="animation-delay: 2s">🪷</div></div><div id="g2-box" class="space-y-3"><h4 id="g2-soal" class="text-sm font-black text-amber-100"></h4><div id="g2-opsi" class="grid gap-2"></div></div></div></section>
+
+        <!-- SLIDE 15: SERTIFIKAT KELULUSAN RESMI DENGAN NAMA PENGGUNA -->
+        <section id="slide-15" class="slide-step hidden w-full">
+            <div class="gembul-card p-8 md:p-10 text-center space-y-5 border-4 border-amber-400 shadow-2xl">
+                <div class="text-4xl float-alive">🏆✨</div>
+                <div>
+                    <h3 class="font-cinzel text-[10px] md:text-xs font-black tracking-widest text-amber-400 uppercase">Sertifikat Penghargaan Resmi</h3>
+                    <h2 class="font-cinzel text-xl md:text-3xl font-black gold-gradient-text mt-1">LONTAR DIGITAL DARSANA</h2>
+                </div>
+
+                <p class="text-xs font-bold text-amber-100">
+                    Sertifikat ini diberikan dengan bangga kepada:
+                </p>
+
+                <div class="p-4 bg-amber-950/90 rounded-2xl border-2 border-amber-500/80 space-y-1">
+                    <h4 id="cert-user-name" class="text-lg md:text-xl font-black text-amber-300">-</h4>
+                    <p id="cert-user-class" class="text-xs text-amber-200">-</p>
+                </div>
+
+                <div class="inline-block px-5 py-2.5 bg-amber-900/40 rounded-2xl border border-amber-600">
+                    <span class="text-[10px] font-black text-amber-300">PENCAPAIAN SKOR KUIS:</span>
+                    <div id="final-score" class="text-2xl md:text-3xl font-black text-amber-400 mt-0.5">100 / 100</div>
+                </div>
+
+                <p class="text-[11px] font-bold text-amber-200 italic">
+                    "Berpikir dengan jernih • Belajar dengan sadar • Berkarya dengan kreatif • Bertindak dengan bijaksana."
+                </p>
+
+                <div class="pt-1">
+                    <button onclick="location.reload()" class="gold-pill-btn py-3 px-8 text-xs">Ulangi Dari Awal 🔄</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-2 text-xs font-black text-amber-800 relative z-10">
+        Lontar Digital Darsana &copy; SMAN 1 Gianyar 2026
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('glitter-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        for (let i = 0; i < 40; i++) {
+            particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 2 + 1, alpha: Math.random(), speed: Math.random() * 0.3 + 0.1 });
+        }
+        function drawGlitter() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha})`; ctx.fill();
+                p.y -= p.speed; if (p.y < 0) p.y = canvas.height;
+            });
+            requestAnimationFrame(drawGlitter);
+        }
+        drawGlitter();
+
+        let currentSlide = 1;
+        const totalSlides = 15;
+        let totalScore = 0;
+
+        function updateSlide() {
+            document.querySelectorAll('.slide-step').forEach(s => s.classList.add('hidden'));
+            document.getElementById(`slide-${currentSlide}`).classList.remove('hidden');
+            document.getElementById('slide-num').innerText = currentSlide;
+            window.scrollTo(0,0);
+        }
+        function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; updateSlide(); } }
+        function prevSlide() { if (currentSlide > 1) { currentSlide--; updateSlide(); } }
+
+        function saveUserAndNext() {
+            const name = document.getElementById('user-name').value.trim();
+            const cls = document.getElementById('user-class').value.trim();
+            if(!name) {
+                alert("Mohon masukkan nama lengkap kamu terlebih dahulu ya!");
+                return;
+            }
+            document.getElementById('display-user-name').innerText = name;
+            document.getElementById('cert-user-name').innerText = name;
+            document.getElementById('cert-user-class').innerText = cls ? `Kelas/Absen: ${cls}` : 'SMA Negeri 1 Gianyar';
+            nextSlide();
+        }
+
+        const s1 = [
+            { q: "1. Istilah untuk menyebut sistem filsafat dalam tradisi Hindu adalah...", opt: ["Darsana", "Yajna", "Dharma", "Samsara"], ans: 0 },
+            { q: "2. Enam sistem filsafat Hindu dikenal dengan istilah...", opt: ["Catur Marga", "Sad Darsana", "Tri Kaya", "Panca Sradha"], ans: 1 },
+            { q: "3. Sistem Darsana yang berfokus pada logika & penalaran...", opt: ["Yoga", "Mimamsa", "Nyaya", "Vedanta"], ans: 2 }
+        ];
+        const s2 = [
+            { q: "4. Tokoh tradisional yang dikaitkan dengan Samkhya...", opt: ["Rsi Jaimini", "Rsi Kapila", "Rsi Patanjali", "Rsi Gautama"], ans: 1 },
+            { q: "5. Konsep penting dalam ajaran Samkhya adalah...", opt: ["Purusa & Prakrti", "Dharma & Yajna", "Sruti & Smerti", "Rta & Karma"], ans: 0 },
+            { q: "6. Sistem filsafat yang erat dengan disiplin & pengendalian diri...", opt: ["Vaiseshika", "Nyaya", "Yoga", "Mimamsa"], ans: 2 }
+        ];
+
+        let g1Idx = 0;
+        function startGame1() { g1Idx = 0; renderG1(); }
+        function renderG1() {
+            if (g1Idx >= s1.length) { nextSlide(); startGame2(); return; }
+            const q = s1[g1Idx]; document.getElementById('g1-soal').innerText = q.q;
+            document.getElementById('g1-status').innerText = "";
+            const cv = document.getElementById('g1-canvas'); cv.innerHTML = '';
+            q.opt.forEach((o, idx) => {
+                const b = document.createElement('div');
+                b.className = 'absolute falling-balloon px-3 py-2 bg-amber-600 border border-amber-300 text-amber-950 font-black text-xs cursor-pointer';
+                b.style.left = `${5 + idx * 24}%`; b.style.top = '0px'; b.innerText = `🎈 ${o}`;
+                b.onclick = () => { if(idx === q.ans) totalScore += 15; document.getElementById('g1-score').innerText = `Skor: ${totalScore}`; g1Idx++; renderG1(); };
+                cv.appendChild(b);
+            });
+        }
+
+        let g2Idx = 0;
+        function startGame2() { g2Idx = 0; renderG2(); }
+        function renderG2() {
+            if (g2Idx >= s2.length) { 
+                document.getElementById('final-score').innerText = `${totalScore} / 100`;
+                nextSlide(); 
+                return; 
+            }
+            document.getElementById('frog').style.left = `${10 + g2Idx * 30}%`;
+            const q = s2[g2Idx]; document.getElementById('g2-soal').innerText = q.q;
+            const box = document.getElementById('g2-opsi'); box.innerHTML = '';
+            q.opt.forEach((o, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left p-3 rounded-2xl border border-amber-800 bg-amber-950 text-amber-100 font-bold text-xs hover:bg-amber-900';
+                btn.innerText = `${String.fromCharCode(65+idx)}. ${o}`;
+                btn.onclick = () => { if(idx === q.ans) totalScore += 15; document.getElementById('g2-score').innerText = `Skor: ${totalScore}`; g2Idx++; renderG2(); };
+                box.appendChild(btn);
+            });
+        }
+    </script>
+</body>
+</html>
